@@ -1,5 +1,7 @@
+import ReactFlowLayout from './ui/layouts/ReactFlowLayout';
+
 function App() {
-	return <h1>Initialized</h1>;
+	return <ReactFlowLayout />;
 }
 
 export default App;
