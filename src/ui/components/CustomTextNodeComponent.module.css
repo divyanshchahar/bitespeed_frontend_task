@@ -1,0 +1,16 @@
+.container {
+	padding: 5px;
+	border-radius: 5px;
+	background-color: #ff6347;
+	max-width: fit-content;
+}
+
+.paragraph {
+	font-size: 6px;
+}
+
+.input {
+	font-size: 12px;
+	padding: 5px;
+	max-width: fit-content;
+}
