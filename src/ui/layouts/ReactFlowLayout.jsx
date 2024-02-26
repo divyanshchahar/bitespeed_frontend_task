@@ -9,7 +9,7 @@ import ReactFlow, {
 import 'reactflow/dist/style.css';
 
 // importing custom ui componenents
-import CustomTextNodeComponent from '../components/CustomTextNodeComponent';
+import CustomTextNodeLayout from '../layouts/CustomTextNodeLayout';
 
 import styles from './ReactFlowLayout.module.css';
 
@@ -32,7 +32,7 @@ const initialNodes = [
 	},
 ];
 
-const nodeTypes = { customTextNode: CustomTextNodeComponent };
+const nodeTypes = { customTextNode: CustomTextNodeLayout };
 
 function ReactFlowLayout() {
 	const [nodes, setNodes] = useState(initialNodes);
@@ -46,7 +46,10 @@ function ReactFlowLayout() {
 
 	// function to handle change in edges
 	const onEdgesChange = useCallback(
-		(changes) => setEdges((eds) => applyEdgeChanges(changes, eds)),
+		(changes) => {
+			console.log(changes);
+			return setEdges((eds) => applyEdgeChanges(changes, eds));
+		},
 		[setEdges]
 	);
 
