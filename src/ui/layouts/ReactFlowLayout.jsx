@@ -60,10 +60,7 @@ function ReactFlowLayout() {
 	);
 
 	return (
-		<div
-			// style={{ height: '100vh', width: '80vw', overflow: 'hidden' }}
-			className={styles.container}
-		>
+		<div className={styles.container}>
 			<ReactFlow
 				nodes={nodes}
 				edges={edges}
