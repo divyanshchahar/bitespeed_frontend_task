@@ -10,6 +10,7 @@ function CustomTextNodeComponent() {
 		<>
 			<div className={styles.container}>
 				<p className={styles.paragraph}>Text Message</p>
+
 				<input
 					type="text"
 					id="text"
@@ -20,15 +21,6 @@ function CustomTextNodeComponent() {
 
 			<CustomTargetHandleComponent />
 
-			{/* <Handle
-				type="source"
-				position={Position.Right}
-				style={{ backgroundColor: 'green' }}
-				isValidConnection={(source) => {
-					console.log(source);
-					return true;
-				}}
-			/> */}
 			<CustomSourceHandleComponent />
 		</>
 	);
