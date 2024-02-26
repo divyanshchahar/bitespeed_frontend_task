@@ -1,6 +1,5 @@
 import React from 'react';
 import styles from './CustomTextNodeLayout.module.css';
-import { Position, NodeToolbar } from 'reactflow';
 
 import CustomSourceHandleComponent from '../components/CustomSourceHandleComponent';
 import CustomTargetHandleComponent from '../components/CustomTargetHandleComponent';
