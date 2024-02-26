@@ -9,7 +9,8 @@ import ReactFlow, {
 import 'reactflow/dist/style.css';
 
 // importing custom ui componenents
-import CustomTextNodeComponent from '../components/CustomTextNodeComponent';
+import CustomTextNodeLayout from '../layouts/CustomTextNodeLayout';
+import CustomEdgeComponenet from '../components/CustomEdgeComponenet';
 
 import styles from './ReactFlowLayout.module.css';
 
@@ -32,11 +33,21 @@ const initialNodes = [
 	},
 ];
 
-const nodeTypes = { customTextNode: CustomTextNodeComponent };
+const initialEdges = [
+	{
+		id: 'n1=>n2',
+		type: 'customEdgeComponent',
+		source: 'node-1',
+		target: 'node-2',
+	},
+];
+
+const nodeTypes = { customTextNode: CustomTextNodeLayout };
+const edgeTypes = { customEdgeComponent: CustomEdgeComponenet };
 
 function ReactFlowLayout() {
 	const [nodes, setNodes] = useState(initialNodes);
-	const [edges, setEdges] = useState([]);
+	const [edges, setEdges] = useState(initialEdges);
 
 	// function to handle node changes like dragging ang deletion
 	const onNodesChange = useCallback(
@@ -47,20 +58,21 @@ function ReactFlowLayout() {
 	// function to handle change in edges
 	const onEdgesChange = useCallback(
 		(changes) => setEdges((eds) => applyEdgeChanges(changes, eds)),
+
 		[setEdges]
 	);
 
 	//function to handle connections
 	const onConnect = useCallback(
-		(connection) => setEdges((eds) => addEdge(connection, eds)),
+		(connection) => {
+			const edge = { ...connection, type: 'customEdgeComponent' };
+			setEdges((eds) => addEdge(edge, eds));
+		},
 		[setEdges]
 	);
 
 	return (
-		<div
-			// style={{ height: '100vh', width: '80vw', overflow: 'hidden' }}
-			className={styles.container}
-		>
+		<div className={styles.container}>
 			<ReactFlow
 				nodes={nodes}
 				edges={edges}
@@ -68,6 +80,7 @@ function ReactFlowLayout() {
 				onEdgesChange={onEdgesChange}
 				onConnect={onConnect}
 				nodeTypes={nodeTypes}
+				edgeTypes={edgeTypes}
 				fitView
 			>
 				<Background />

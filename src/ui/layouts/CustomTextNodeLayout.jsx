@@ -1,12 +1,16 @@
 import React from 'react';
 import { Handle, Position } from 'reactflow';
-import styles from './CustomTextNodeComponent.module.css';
+import styles from './CustomTextNodeLayout.module.css';
+
+import CustomTargetHandleComponent from '../components/CustomTargetHandleComponent';
+import CustomSourceHandleComponent from '../components/CustomSourceHandleComponent';
 
 function CustomTextNodeComponent() {
 	return (
 		<>
 			<div className={styles.container}>
 				<p className={styles.paragraph}>Text Message</p>
+
 				<input
 					type="text"
 					id="text"
@@ -14,8 +18,10 @@ function CustomTextNodeComponent() {
 					className={`nodrag ${styles.input}`}
 				/>
 			</div>
-			<Handle type="target" position={Position.Left} />
-			<Handle type="source" position={Position.Right} />
+
+			<CustomTargetHandleComponent />
+
+			<CustomSourceHandleComponent />
 		</>
 	);
 }
