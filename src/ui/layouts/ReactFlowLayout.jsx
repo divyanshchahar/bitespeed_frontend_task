@@ -1,19 +1,13 @@
 import { useCallback, useState } from 'react';
-import ReactFlow, {
-	Background,
-	Controls,
-	addEdge,
-	applyEdgeChanges,
-	applyNodeChanges,
-} from 'reactflow';
+import { useDispatch, useSelector } from 'react-redux';
+import ReactFlow, { Background, Controls, applyNodeChanges } from 'reactflow';
 import 'reactflow/dist/style.css';
-
-// importing custom ui componenents
+import { v4 as uuidv4 } from 'uuid';
+import { edgesAdded, edgesDeleted } from '../../redux/edgesSlice';
 import CustomEdgeComponenet from '../components/CustomEdgeComponenet';
 import CustomTextNodeLayout from '../layouts/CustomTextNodeLayout';
-import SidePanel from './SidePanel';
-
 import styles from './ReactFlowLayout.module.css';
+import SidePanel from './SidePanel';
 
 // mock list of nodes
 const initialNodes = [
@@ -34,42 +28,39 @@ const initialNodes = [
 	},
 ];
 
-const initialEdges = [
-	{
-		id: 'n1=>n2',
-		type: 'customEdgeComponent',
-		source: 'node-1',
-		target: 'node-2',
-	},
-];
-
 const nodeTypes = { customTextNode: CustomTextNodeLayout };
 const edgeTypes = { customEdgeComponent: CustomEdgeComponenet };
 
 function ReactFlowLayout() {
 	const [nodes, setNodes] = useState(initialNodes);
-	const [edges, setEdges] = useState(initialEdges);
+
+	const dispatch = useDispatch();
+	const edges = useSelector((state) => state.edges);
 
 	// function to handle node changes like dragging ang deletion
 	const onNodesChange = useCallback(
 		(changes) => setNodes((nds) => applyNodeChanges(changes, nds)),
+
 		[setNodes]
 	);
 
 	// function to handle change in edges
 	const onEdgesChange = useCallback(
-		(changes) => setEdges((eds) => applyEdgeChanges(changes, eds)),
-
-		[setEdges]
+		(changes) => {
+			if (changes[0].type === 'remove') {
+				dispatch(edgesDeleted(changes[0]));
+			}
+		},
+		[dispatch]
 	);
 
 	//function to handle connections
 	const onConnect = useCallback(
 		(connection) => {
-			const edge = { ...connection, type: 'customEdgeComponent' };
-			setEdges((eds) => addEdge(edge, eds));
+			const edge = { ...connection, id: uuidv4(), type: 'customEdgeComponent' };
+			dispatch(edgesAdded(edge));
 		},
-		[setEdges]
+		[dispatch]
 	);
 
 	return (
