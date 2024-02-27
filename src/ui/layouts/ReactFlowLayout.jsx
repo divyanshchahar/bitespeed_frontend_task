@@ -9,8 +9,9 @@ import ReactFlow, {
 import 'reactflow/dist/style.css';
 
 // importing custom ui componenents
-import CustomTextNodeLayout from '../layouts/CustomTextNodeLayout';
 import CustomEdgeComponenet from '../components/CustomEdgeComponenet';
+import CustomTextNodeLayout from '../layouts/CustomTextNodeLayout';
+import SidePanel from './SidePanel';
 
 import styles from './ReactFlowLayout.module.css';
 
@@ -85,6 +86,7 @@ function ReactFlowLayout() {
 			>
 				<Background />
 				<Controls />
+				<SidePanel />
 			</ReactFlow>
 		</div>
 	);
