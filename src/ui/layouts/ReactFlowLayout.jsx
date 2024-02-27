@@ -3,9 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import ReactFlow, { Background, Controls, applyNodeChanges } from 'reactflow';
 import 'reactflow/dist/style.css';
 import { v4 as uuidv4 } from 'uuid';
+import { nodeTypes } from '../../react-flow/nodes';
 import { edgesAdded, edgesDeleted } from '../../redux/edgesSlice';
 import CustomEdgeComponenet from '../components/CustomEdgeComponenet';
-import CustomTextNodeLayout from '../layouts/CustomTextNodeLayout';
 import styles from './ReactFlowLayout.module.css';
 import SidePanel from './SidePanel';
 
@@ -28,7 +28,6 @@ const initialNodes = [
 	},
 ];
 
-const nodeTypes = { customTextNode: CustomTextNodeLayout };
 const edgeTypes = { customEdgeComponent: CustomEdgeComponenet };
 
 function ReactFlowLayout() {
