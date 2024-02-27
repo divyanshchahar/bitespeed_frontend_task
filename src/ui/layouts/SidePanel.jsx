@@ -1,6 +1,21 @@
 import { Panel, useNodes } from 'reactflow';
+import { nodesList } from '../../react-flow/nodes';
 
 import styles from './SidePanel.module.css';
+
+function NodesList({ nodesList }) {
+	return (
+		<>
+			{nodesList.map((item) => {
+				return (
+					<button key={item.name} className={styles.button}>
+						{item.displayText}
+					</button>
+				);
+			})}
+		</>
+	);
+}
 
 function SidePanel() {
 	const nodes = useNodes();
@@ -8,12 +23,13 @@ function SidePanel() {
 	return (
 		<Panel position="top-right">
 			<div className={styles.container}>
-				<button className={styles.button}>Add Text Maessage node</button>
+				<NodesList nodesList={nodesList} />
 
 				{nodes.map((item) => {
 					if (item.selected) {
 						return (
 							<textarea
+								key={item.id}
 								placeholder="enter text message"
 								className={styles.textarea}
 							></textarea>
