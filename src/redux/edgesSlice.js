@@ -7,9 +7,13 @@ const edgesSlice = createSlice({
 		edgesAdded(state, action) {
 			state.push(action.payload);
 		},
+		edgesDeleted(state, action) {
+			const { id } = action.payload;
+			return state.filter((edge) => edge.id !== id);
+		},
 	},
 });
 
-export const { edgesAdded } = edgesSlice.actions;
+export const { edgesAdded, edgesDeleted } = edgesSlice.actions;
 
 export default edgesSlice.reducer;
