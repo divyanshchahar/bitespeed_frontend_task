@@ -1,10 +1,4 @@
-import {
-	BaseEdge,
-	getStraightPath,
-	getBezierPath,
-	getSimpleBezierPath,
-	getSmoothStepPath,
-} from 'reactflow';
+import { BaseEdge, getSimpleBezierPath } from 'reactflow';
 
 export default function CustomEdge({ id, sourceX, sourceY, targetX, targetY }) {
 	const [edgePath] = getSimpleBezierPath({
