@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { applyNodeChanges } from 'reactflow';
 
 const nodesSlice = createSlice({
 	initialState: [],
@@ -7,9 +8,12 @@ const nodesSlice = createSlice({
 		nodeAdded(state, action) {
 			state.push(action.payload);
 		},
+		nodeUpdated(state, action) {
+			return applyNodeChanges(action.payload, state);
+		},
 	},
 });
 
-export const { nodeAdded } = nodesSlice.actions;
+export const { nodeAdded, nodeUpdated } = nodesSlice.actions;
 
 export default nodesSlice.reducer;
