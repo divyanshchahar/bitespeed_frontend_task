@@ -1,9 +1,8 @@
 import { useDispatch } from 'react-redux';
 import { Panel, useNodes } from 'reactflow';
+import { v4 as uuidv4 } from 'uuid';
 import { nodesList } from '../../react-flow/nodes';
 import { nodeAdded, textUpdated } from '../../redux/nodesSlice';
-import { v4 as uuidv4 } from 'uuid';
-import { UseDispatch } from 'react-redux';
 import styles from './SidePanel.module.css';
 
 function NodesList({ nodesList }) {
