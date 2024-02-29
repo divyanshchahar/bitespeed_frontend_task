@@ -8,6 +8,7 @@ import { edgesAdded, edgesDeleted } from '../../redux/edgesSlice';
 import CustomEdgeComponenet from '../components/CustomEdgeComponenet';
 import styles from './ReactFlowLayout.module.css';
 import SidePanel from './SidePanel';
+import { nodeUpdated } from '../../redux/nodesSlice';
 
 // // mock list of nodes
 // const initialNodes = [
@@ -37,14 +38,17 @@ function ReactFlowLayout() {
 	const edges = useSelector((state) => state.edges);
 	const nodes = useSelector((state) => state.nodes);
 
-	// // function to handle node changes like dragging ang deletion
-	// const onNodesChange = useCallback(
-	// 	(changes) => {
-	// 		setNodes((nds) => applyNodeChanges(changes, nds));
-	// 	},
+	// function to handle node changes like dragging ang deletion
+	const onNodesChange = useCallback(
+		// (changes) => {
+		// 	console.log(changes);
+		// },
+		(changes) => {
+			dispatch(nodeUpdated(changes));
+		},
 
-	// 	[setNodes]
-	// );
+		[nodes]
+	);
 
 	// function to handle change in edges
 	const onEdgesChange = useCallback(
@@ -70,7 +74,7 @@ function ReactFlowLayout() {
 			<ReactFlow
 				nodes={nodes}
 				edges={edges}
-				// onNodesChange={onNodesChange}
+				onNodesChange={onNodesChange}
 				onEdgesChange={onEdgesChange}
 				onConnect={onConnect}
 				nodeTypes={nodeTypes}
