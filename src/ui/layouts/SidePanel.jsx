@@ -1,14 +1,29 @@
+import { useDispatch } from 'react-redux';
 import { Panel, useNodes } from 'reactflow';
 import { nodesList } from '../../react-flow/nodes';
+import { nodeAdded } from '../../redux/nodesSlice';
+import { v4 as uuidv4 } from 'uuid';
 
 import styles from './SidePanel.module.css';
 
 function NodesList({ nodesList }) {
+	const dispatch = useDispatch();
+
+	const onClickHandler = (e, nodeName) => {
+		dispatch(
+			nodeAdded({ id: uuidv4(), type: nodeName, position: { x: 0, y: 0 } })
+		);
+	};
+
 	return (
 		<>
 			{nodesList.map((item) => {
 				return (
-					<button key={item.name} className={styles.button}>
+					<button
+						key={item.name}
+						className={styles.button}
+						onClick={(e) => onClickHandler(e, item.name)}
+					>
 						{item.displayText}
 					</button>
 				);
