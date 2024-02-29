@@ -1,9 +1,9 @@
 import { useDispatch } from 'react-redux';
 import { Panel, useNodes } from 'reactflow';
 import { nodesList } from '../../react-flow/nodes';
-import { nodeAdded } from '../../redux/nodesSlice';
+import { nodeAdded, textUpdated } from '../../redux/nodesSlice';
 import { v4 as uuidv4 } from 'uuid';
-
+import { UseDispatch } from 'react-redux';
 import styles from './SidePanel.module.css';
 
 function NodesList({ nodesList }) {
@@ -11,7 +11,12 @@ function NodesList({ nodesList }) {
 
 	const onClickHandler = (e, nodeName) => {
 		dispatch(
-			nodeAdded({ id: uuidv4(), type: nodeName, position: { x: 0, y: 0 } })
+			nodeAdded({
+				id: uuidv4(),
+				type: nodeName,
+				position: { x: 0, y: 0 },
+				data: '',
+			})
 		);
 	};
 
@@ -34,6 +39,7 @@ function NodesList({ nodesList }) {
 
 function SidePanel() {
 	const nodes = useNodes();
+	const dispatch = useDispatch();
 
 	return (
 		<Panel position="top-right">
@@ -47,6 +53,10 @@ function SidePanel() {
 								key={item.id}
 								placeholder="enter text message"
 								className={styles.textarea}
+								value={item.data}
+								onChange={(e) => {
+									dispatch(textUpdated({ id: item.id, data: e.target.value }));
+								}}
 							></textarea>
 						);
 					}
