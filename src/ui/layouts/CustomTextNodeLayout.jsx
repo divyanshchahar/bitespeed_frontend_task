@@ -4,18 +4,14 @@ import styles from './CustomTextNodeLayout.module.css';
 import CustomSourceHandleComponent from '../components/CustomSourceHandleComponent';
 import CustomTargetHandleComponent from '../components/CustomTargetHandleComponent';
 
-function CustomTextNodeComponent() {
+function CustomTextNodeComponent({ data }) {
 	return (
 		<>
 			<div className={styles.container}>
 				<p className={styles.paragraph}>Text Message</p>
-
-				<input
-					type="text"
-					id="text"
-					placeholder="input text mesage"
-					className={`nodrag ${styles.input}`}
-				/>
+				<div className={styles.textdiv}>
+					<p>{data}</p>
+				</div>
 			</div>
 
 			<CustomTargetHandleComponent />
