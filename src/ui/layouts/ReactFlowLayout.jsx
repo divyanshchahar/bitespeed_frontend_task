@@ -40,9 +40,18 @@ function ReactFlowLayout() {
 	const onConnect = useCallback(
 		(connection) => {
 			const edge = { ...connection, id: uuidv4(), type: 'customEdgeComponent' };
+			const matchingSource = edges.filter(
+				(item) => item.source === edge.source
+			);
+
+			if (matchingSource.length > 0) {
+				alert('Only 1 edge can orignate from one source');
+				return;
+			}
+
 			dispatch(edgesAdded(edge));
 		},
-		[dispatch]
+		[dispatch, edges]
 	);
 
 	return (
