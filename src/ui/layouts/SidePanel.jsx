@@ -1,9 +1,10 @@
 import { useDispatch } from 'react-redux';
-import { Panel, useNodes } from 'reactflow';
+import { useNodes } from 'reactflow';
 import { v4 as uuidv4 } from 'uuid';
 import { nodesList } from '../../react-flow/nodes';
 import { nodeAdded, textUpdated } from '../../redux/nodesSlice';
 import styles from './SidePanel.module.css';
+import DraggableComponent from '../components/DraggableComponent';
 
 function NodesList({ nodesList }) {
 	const dispatch = useDispatch();
@@ -23,13 +24,15 @@ function NodesList({ nodesList }) {
 		<>
 			{nodesList.map((item) => {
 				return (
-					<button
-						key={item.name}
-						className={styles.button}
-						onClick={(e) => onClickHandler(e, item.name)}
-					>
-						{item.displayText}
-					</button>
+					<DraggableComponent id={item.name} key={item.name}>
+						<button
+							key={item.name}
+							className={styles.button}
+							onClick={(e) => onClickHandler(e, item.name)}
+						>
+							{item.displayText}
+						</button>
+					</DraggableComponent>
 				);
 			})}
 		</>
@@ -41,27 +44,25 @@ function SidePanel() {
 	const dispatch = useDispatch();
 
 	return (
-		<Panel position="top-right">
-			<div className={styles.container}>
-				<NodesList nodesList={nodesList} />
+		<div className={styles.container}>
+			<NodesList nodesList={nodesList} />
 
-				{nodes.map((item) => {
-					if (item.selected) {
-						return (
-							<textarea
-								key={item.id}
-								placeholder="enter text message"
-								className={styles.textarea}
-								value={item.data}
-								onChange={(e) => {
-									dispatch(textUpdated({ id: item.id, data: e.target.value }));
-								}}
-							></textarea>
-						);
-					}
-				})}
-			</div>
-		</Panel>
+			{nodes.map((item) => {
+				if (item.selected) {
+					return (
+						<textarea
+							key={item.id}
+							placeholder="enter text message"
+							className={styles.textarea}
+							value={item.data}
+							onChange={(e) => {
+								dispatch(textUpdated({ id: item.id, data: e.target.value }));
+							}}
+						></textarea>
+					);
+				}
+			})}
+		</div>
 	);
 }
 

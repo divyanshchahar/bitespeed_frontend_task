@@ -7,8 +7,8 @@ import { nodeTypes } from '../../react-flow/nodes';
 import { edgesAdded, edgesDeleted } from '../../redux/edgesSlice';
 import { nodeUpdated } from '../../redux/nodesSlice';
 import CustomEdgeComponenet from '../components/CustomEdgeComponenet';
+import DroppableComponent from '../components/DroppableComponent';
 import styles from './ReactFlowLayout.module.css';
-import SidePanel from './SidePanel';
 
 const edgeTypes = { customEdgeComponent: CustomEdgeComponenet };
 
@@ -55,22 +55,23 @@ function ReactFlowLayout() {
 	);
 
 	return (
-		<div className={styles.container}>
-			<ReactFlow
-				nodes={nodes}
-				edges={edges}
-				onNodesChange={onNodesChange}
-				onEdgesChange={onEdgesChange}
-				onConnect={onConnect}
-				nodeTypes={nodeTypes}
-				edgeTypes={edgeTypes}
-				fitView
-			>
-				<Background />
-				<Controls />
-				<SidePanel />
-			</ReactFlow>
-		</div>
+		<DroppableComponent>
+			<div className={styles.container}>
+				<ReactFlow
+					nodes={nodes}
+					edges={edges}
+					onNodesChange={onNodesChange}
+					onEdgesChange={onEdgesChange}
+					onConnect={onConnect}
+					nodeTypes={nodeTypes}
+					edgeTypes={edgeTypes}
+					fitView
+				>
+					<Background />
+					<Controls />
+				</ReactFlow>
+			</div>
+		</DroppableComponent>
 	);
 }
 export default ReactFlowLayout;
