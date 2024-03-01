@@ -68,7 +68,7 @@ function ReactFlowLayout() {
 			>
 				<Background />
 				<Controls />
-				<SidePanel />
+				{/* <SidePanel /> */}
 			</ReactFlow>
 		</div>
 	);
