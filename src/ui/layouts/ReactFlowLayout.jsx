@@ -8,7 +8,6 @@ import { edgesAdded, edgesDeleted } from '../../redux/edgesSlice';
 import { nodeUpdated } from '../../redux/nodesSlice';
 import CustomEdgeComponenet from '../components/CustomEdgeComponenet';
 import styles from './ReactFlowLayout.module.css';
-import SidePanel from './SidePanel';
 
 const edgeTypes = { customEdgeComponent: CustomEdgeComponenet };
 
@@ -68,7 +67,6 @@ function ReactFlowLayout() {
 			>
 				<Background />
 				<Controls />
-				{/* <SidePanel /> */}
 			</ReactFlow>
 		</div>
 	);
