@@ -3,6 +3,9 @@
 	background-color: beige;
 	padding: 10px;
 	width: 20vw;
+	position: fixed;
+	top: 5vh;
+	right: 0;
 }
 
 .textarea {
