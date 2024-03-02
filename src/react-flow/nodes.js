@@ -18,6 +18,6 @@ export const nodeTypes = { customTextNode: CustomTextNodeLayout };
 export const nodesList = [
 	{
 		name: 'customTextNode',
-		displayText: 'Text Node',
+		displayText: 'Message',
 	},
 ];
