@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { nodesList } from '../../react-flow/nodes';
 import { nodeAdded, textUpdated } from '../../redux/nodesSlice';
 import DraggableComponent from '../components/DraggableComponent';
-import styles from './SidePanel.module.css';
+import styles from './SidePanelLayout.module.css';
 
 // React component to render buttons to add nodes (this is an extensible componenet as requested)
 

@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { nodesList } from './react-flow/nodes';
 import { nodeAdded } from './redux/nodesSlice';
 import ReactFlowLayout from './ui/layouts/ReactFlowLayout';
-import SidePanelLayout from './ui/layouts/SidePanel';
+import SidePanelLayout from './ui/layouts/SidePanelLayout';
 import TopNavBarLayout from './ui/layouts/TopNavBarLayout';
 
 const nodeNames = nodesList.map((item) => item.name);
