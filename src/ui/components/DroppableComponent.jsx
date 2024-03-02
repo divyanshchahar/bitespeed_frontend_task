@@ -1,18 +1,12 @@
 import { useDroppable } from '@dnd-kit/core';
 
-export function DroppableComponent({ children }) {
-	const { isOver, setNodeRef } = useDroppable({
+// React component to make UI(children) a drop zone
+function DroppableComponent({ children }) {
+	const { setNodeRef } = useDroppable({
 		id: 'droppable',
 	});
-	const style = {
-		color: isOver ? 'green' : undefined,
-	};
 
-	return (
-		<div ref={setNodeRef} style={style}>
-			{children}
-		</div>
-	);
+	return <div ref={setNodeRef}>{children}</div>;
 }
 
 export default DroppableComponent;
