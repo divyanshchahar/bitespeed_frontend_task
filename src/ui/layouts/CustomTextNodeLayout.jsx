@@ -7,7 +7,7 @@ function CustomTextNodeComponent({ data }) {
 	return (
 		<>
 			<div className={styles.container}>
-				<p className={styles.paragraph}>Text Message</p>
+				<p className={styles.paragraph}>Send Message</p>
 				<div className={styles.textdiv}>
 					<p>{data}</p>
 				</div>
