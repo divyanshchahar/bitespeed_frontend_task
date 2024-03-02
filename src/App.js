@@ -6,7 +6,7 @@ import { nodesList } from './react-flow/nodes';
 import { nodeAdded } from './redux/nodesSlice';
 import ReactFlowLayout from './ui/layouts/ReactFlowLayout';
 import SidePanel from './ui/layouts/SidePanel';
-import TopNavBar from './ui/layouts/TopNavBar';
+import TopNavBarLayout from './ui/layouts/TopNavBar';
 
 const nodeNames = nodesList.map((item) => item.name);
 
@@ -32,7 +32,7 @@ function App() {
 
 	return (
 		<>
-			<TopNavBar />
+			<TopNavBarLayout />
 			<ReactFlowProvider>
 				<DndContext
 					onDragEnd={(e) => {

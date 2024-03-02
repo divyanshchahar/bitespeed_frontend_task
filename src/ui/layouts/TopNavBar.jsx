@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux';
 import styles from './TopNavBar.module.css';
 
 // React Componenet to render top navigation bar
-function TopNavBar() {
+function TopNavBarLayout() {
 	const edges = useSelector((state) => state.edges);
 	const nodes = useSelector((state) => state.nodes);
 
@@ -30,4 +30,4 @@ function TopNavBar() {
 	);
 }
 
-export default TopNavBar;
+export default TopNavBarLayout;
