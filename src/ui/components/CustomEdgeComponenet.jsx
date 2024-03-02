@@ -1,6 +1,7 @@
 import { BaseEdge, getSimpleBezierPath } from 'reactflow';
 
-export default function CustomEdge({ id, sourceX, sourceY, targetX, targetY }) {
+// React Component to render edge
+function CustomEdge({ id, sourceX, sourceY, targetX, targetY }) {
 	const [edgePath] = getSimpleBezierPath({
 		sourceX,
 		sourceY,
@@ -14,3 +15,5 @@ export default function CustomEdge({ id, sourceX, sourceY, targetX, targetY }) {
 		</>
 	);
 }
+
+export default CustomEdge;
