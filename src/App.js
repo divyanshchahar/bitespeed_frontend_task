@@ -6,7 +6,7 @@ import { nodesList } from './react-flow/nodes';
 import { nodeAdded } from './redux/nodesSlice';
 import ReactFlowLayout from './ui/layouts/ReactFlowLayout';
 import SidePanel from './ui/layouts/SidePanel';
-import TopNavBarLayout from './ui/layouts/TopNavBar';
+import TopNavBarLayout from './ui/layouts/TopNavBarLayout';
 
 const nodeNames = nodesList.map((item) => item.name);
 

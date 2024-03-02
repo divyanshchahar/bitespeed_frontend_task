@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import styles from './TopNavBar.module.css';
+import styles from './TopNavBarLayout.module.css';
 
 // React Componenet to render top navigation bar
 function TopNavBarLayout() {
