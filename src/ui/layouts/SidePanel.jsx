@@ -43,7 +43,7 @@ function NodesList({ nodesList }) {
 }
 
 // React Componenet to render side panel
-function SidePanel() {
+function SidePanelLayout() {
 	const nodes = useNodes();
 	const dispatch = useDispatch();
 
@@ -71,4 +71,4 @@ function SidePanel() {
 	);
 }
 
-export default SidePanel;
+export default SidePanelLayout;
