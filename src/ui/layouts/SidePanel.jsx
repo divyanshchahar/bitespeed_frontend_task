@@ -3,8 +3,10 @@ import { useNodes } from 'reactflow';
 import { v4 as uuidv4 } from 'uuid';
 import { nodesList } from '../../react-flow/nodes';
 import { nodeAdded, textUpdated } from '../../redux/nodesSlice';
-import styles from './SidePanel.module.css';
 import DraggableComponent from '../components/DraggableComponent';
+import styles from './SidePanel.module.css';
+
+// React component to render buttons to add nodes (this is an extensible componenet as requested)
 
 function NodesList({ nodesList }) {
 	const dispatch = useDispatch();
@@ -20,6 +22,7 @@ function NodesList({ nodesList }) {
 		);
 	};
 
+	// note: more nodes can be easily added by modifying ./src/react-flow/node.js
 	return (
 		<>
 			{nodesList.map((item) => {
@@ -39,6 +42,7 @@ function NodesList({ nodesList }) {
 	);
 }
 
+// React Componenet to render side panel
 function SidePanel() {
 	const nodes = useNodes();
 	const dispatch = useDispatch();
@@ -47,6 +51,7 @@ function SidePanel() {
 		<div className={styles.container}>
 			<NodesList nodesList={nodesList} />
 
+			{/* text are is rendered conditionally only if a node is selected */}
 			{nodes.map((item) => {
 				if (item.selected) {
 					return (

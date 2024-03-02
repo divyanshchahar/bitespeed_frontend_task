@@ -12,8 +12,10 @@ import styles from './ReactFlowLayout.module.css';
 
 const edgeTypes = { customEdgeComponent: CustomEdgeComponenet };
 
+// React componenet to render the flow
 function ReactFlowLayout() {
 	const dispatch = useDispatch();
+
 	const edges = useSelector((state) => state.edges);
 	const nodes = useSelector((state) => state.nodes);
 
@@ -26,7 +28,7 @@ function ReactFlowLayout() {
 		[nodes]
 	);
 
-	// function to handle change in edges
+	// function to handle edge deletion
 	const onEdgesChange = useCallback(
 		(changes) => {
 			if (changes[0].type === 'remove') {
@@ -36,14 +38,17 @@ function ReactFlowLayout() {
 		[dispatch]
 	);
 
-	//function to handle connections
+	//function to handle new connections
 	const onConnect = useCallback(
 		(connection) => {
 			const edge = { ...connection, id: uuidv4(), type: 'customEdgeComponent' };
+
+			// array ontaing edges originating from same source
 			const matchingSource = edges.filter(
 				(item) => item.source === edge.source
 			);
 
+			// if more than 1 edge originates froma source, the user is alerted of the constrain of only single edge originating a a source handle
 			if (matchingSource.length > 0) {
 				alert('Only 1 edge can orignate from one source');
 				return;

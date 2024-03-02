@@ -1,15 +1,18 @@
 import { useSelector } from 'react-redux';
 import styles from './TopNavBar.module.css';
 
+// React Componenet to render top navigation bar
 function TopNavBar() {
 	const edges = useSelector((state) => state.edges);
 	const nodes = useSelector((state) => state.nodes);
 
+	// function to handle saving of flow
 	const clickHandler = () => {
 		const nodeCount = nodes.map((node) => node.id);
 
 		const edgeCount = edges.map((edge) => edge.target);
 
+		// model is only saved if all nodes are coneected
 		if (nodeCount.length - edgeCount.length <= 1) {
 			alert('performing mock save');
 			return;

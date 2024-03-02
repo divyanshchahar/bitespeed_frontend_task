@@ -1,6 +1,6 @@
-import React from 'react';
 import { useDraggable } from '@dnd-kit/core';
 
+// React component to make UI(children) drabggable
 function DraggableComponent({ children, id, key }) {
 	const { attributes, listeners, setNodeRef, transform } = useDraggable({
 		id: id,
